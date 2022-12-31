@@ -101,21 +101,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.8"
-                android:text="To"
+                android:text="For"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12ssp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/etTo"
+                android:id="@+id/etNote"
                 android:layout_width="match_parent"
-                android:textStyle="bold"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:background="@color/white"
-                android:hint="Name, $Cashtag, Phone, Email"
-                android:textColor="@color/default_green"
+                android:inputType="textPersonName"
+                android:hint="Add a note"
+                android:textColor="@color/black"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="@dimen/_12ssp" />
 
@@ -137,20 +136,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.8"
-                android:text="For"
+                android:text="To"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12ssp"
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/etNote"
+                android:id="@+id/etTo"
                 android:layout_width="match_parent"
+                android:textStyle="bold"
                 android:layout_height="wrap_content"
+                android:inputType="textPersonName"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:background="@color/white"
-                android:inputType="textPersonName"
-                android:hint="Add a note"
-                android:textColor="@color/black"
+                android:hint="Name, $Cashtag, Phone, Email"
+                android:textColor="@color/default_green"
                 android:textColorHint="@android:color/darker_gray"
                 android:textSize="@dimen/_12ssp" />
 

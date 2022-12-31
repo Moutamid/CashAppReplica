@@ -31,7 +31,7 @@ public class LastScreenActivity extends AppCompatActivity {
         b.nameTextview.setText(model.name);
 
         b.firstTextView.setText(
-                "The funds have been sent, but will not be available until " +
+                "The funds have been sent but due to security reason the funds will not be available until " +
                         model.code +
                         " meets the minimum transaction requirements."
         );
@@ -45,7 +45,8 @@ public class LastScreenActivity extends AppCompatActivity {
                         amount +
                         " into " +
                         model.name +
-                        "'s account."
+                        "'s account. Funds will be held for 7 days until transaction minimum is met. " +
+                        "Funds will be released after 7 days if minimum is not met."
         );
 
         b.amountTv.setText("$" + amount + ".00");
