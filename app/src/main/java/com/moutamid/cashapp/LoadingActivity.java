@@ -2,6 +2,7 @@ package com.moutamid.cashapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
@@ -14,6 +15,12 @@ public class LoadingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_loading);
 
         animate();
+
+        new Handler().postDelayed(() -> {
+            finish();
+            startActivity(new Intent(LoadingActivity.this, LastScreenActivity.class));
+        }, 8000);
+
     }
 
     private void animate() {

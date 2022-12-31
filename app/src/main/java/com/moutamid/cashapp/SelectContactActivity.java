@@ -46,6 +46,10 @@ public class SelectContactActivity extends AppCompatActivity {
     private RecyclerView conversationRecyclerView;
     private RecyclerViewAdapterMessages adapter;
 
+    String selected_code = Constants.NULL;
+
+    ContactModel selectedModel = new ContactModel();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +68,6 @@ public class SelectContactActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                selected_code = "null";
                 adapter.getFilter().filter(s.toString());
             }
 
@@ -74,7 +77,7 @@ public class SelectContactActivity extends AppCompatActivity {
             }
         });
 
-        b.topText.setText("$" + getIntent().getStringExtra(Constants.PARAMS));
+        b.topText.setText("$" + Stash.getString(Constants.SENT_AMOUNT, "0"));
 
         b.cashLayout.setOnLongClickListener(v -> {
             startActivity(new Intent(SelectContactActivity.this, EditListActivity.class));
@@ -86,7 +89,12 @@ public class SelectContactActivity extends AppCompatActivity {
         });
 
         b.payBtn.setOnClickListener(v -> {
-            startActivity(new Intent(SelectContactActivity.this, LoadingActivity.class));
+            if (!selected_code.equals(Constants.NULL)) {
+                Stash.put(Constants.SELECTED_MODEL, selectedModel);
+
+                startActivity(new Intent(SelectContactActivity.this, LoadingActivity.class));
+
+            }
         });
 
         initRecyclerView();
@@ -132,17 +140,8 @@ public class SelectContactActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        tasksArrayList =
-                Stash.getArrayList(Constants.LIST, ContactModel.class);
+        tasksArrayList = Stash.getArrayList(Constants.LIST, ContactModel.class);
         adapter.notifyDataSetChanged();
-    }
-
-    private String getStringFromBitmap(Bitmap bitmap) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] imageBytes = baos.toByteArray();
-        String base64String = Base64.encodeToString(imageBytes, Base64.NO_WRAP);
-        return base64String;
     }
 
     private Bitmap getBitmapFromString(String base64String) {
@@ -150,8 +149,6 @@ public class SelectContactActivity extends AppCompatActivity {
         Bitmap decodedBitmap = BitmapFactory.decodeByteArray(decodedByteArray, 0, decodedByteArray.length);
         return decodedBitmap;
     }
-
-    String selected_code = "null";
 
     private class RecyclerViewAdapterMessages extends RecyclerView.Adapter
             <RecyclerViewAdapterMessages.ViewHolderRightMessage> implements Filterable {
@@ -180,6 +177,7 @@ public class SelectContactActivity extends AppCompatActivity {
                 holder.tick.setVisibility(View.VISIBLE);
 
                 selected_code = model.code;
+                selectedModel = model;
 
                 b.etTo.setText(model.code);
                 b.payBtn.setTextColor(getResources().getColor(R.color.white));
