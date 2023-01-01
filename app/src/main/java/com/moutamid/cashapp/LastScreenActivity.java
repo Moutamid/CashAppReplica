@@ -12,6 +12,9 @@ import com.moutamid.cashapp.databinding.ActivityLastScreenBinding;
 import com.moutamid.cashapp.model.ContactModel;
 import com.moutamid.cashapp.utils.Constants;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class LastScreenActivity extends AppCompatActivity {
 
     private ActivityLastScreenBinding b;
@@ -46,11 +49,15 @@ public class LastScreenActivity extends AppCompatActivity {
                         " into " +
                         model.name +
                         "'s account. Funds will be held for 7 days until transaction minimum is met. " +
-                        "Funds will be released after 7 days if minimum is not met."
+                        "Funds will be released after 7 days back into your account if minimum is not met. "
         );
 
-        b.amountTv.setText("$" + amount + ".00");
+        b.amountTv.setText("$" + getFormattedAmount(Integer.parseInt(amount)) + ".00");
 
+    }
+
+    private String getFormattedAmount(int amount){
+        return NumberFormat.getNumberInstance(Locale.US).format(amount);
     }
 
     private Bitmap getBitmapFromString(String base64String) {
