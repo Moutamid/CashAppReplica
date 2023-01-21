@@ -1,10 +1,10 @@
 [
   {
     "id": 0,
-    "name": "entertainment"
+    "name": "movies"
   },
   {
     "id": 1,
-    "name": "movies"
+    "name": "entertainment"
   }
 ]
